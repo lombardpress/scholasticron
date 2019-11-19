@@ -35,7 +35,20 @@
     <!-- JavaScript-->
     <script src="assets/javascript/timeline/js/timeline.js"></script>
     <script>
-      var timeline = new TL.Timeline('timeline', 'https://scta.info/api/timeline/1.0/persons', {
+    function getUrlVar() {
+      var result = {};
+      var location = window.location.href.split('#');
+      var parts = location[0].replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+          result [key] = value;
+      });
+      return result;
+    }
+    let params = ""
+    if (getUrlVar()["order"]){
+      params= "?order=" + getUrlVar()["order"]
+    }
+      // var timeline = new TL.Timeline('timeline', 'https://scta.info/api/timeline/1.0/persons?order=Dominican', {
+      var timeline = new TL.Timeline('timeline', 'https://scta.info/api/timeline/1.0/persons' + params, {
       //var timeline = new TL.Timeline('timeline', 'example.json', {
       	theme_color: "#288EC3",
       	ga_property_id: "UA-27829802-4"
